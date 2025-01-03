@@ -2,9 +2,10 @@
 'use client';
 import { Axa, Dietl, Gurrjohns, Momart } from '@/assets/images';
 import { useEffect, useRef, useState } from "react"
-import Script from 'next/script';
+// import Script from 'next/script';
 import Image from 'next/image';
 import './index.css'
+import * as THREE from 'three';
 import { imgs } from '@/assets/images/action';
 import { useEmailSubmit } from './components/Footer';
 const LandingPage = () => {
@@ -198,7 +199,7 @@ const LandingPage = () => {
     })
   }
   const initCanvas = () => {
-    const THREE = window.THREE
+    // const THREE = window.THREE
     const scene = new THREE.Scene();
     const container = canvasRef.current!;
     const scrollContainer = scrollRef.current!
@@ -556,7 +557,7 @@ const LandingPage = () => {
     {/* <div className='fixed left-0 w-full h-[30px] bg-red-500'>
       <p>{h}</p>
     </div> */}
-    <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" strategy="beforeInteractive" />
+    {/* <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" strategy="beforeInteractive" /> */}
   </div>
 }
 export default LandingPage;

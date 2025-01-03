@@ -73,23 +73,18 @@ const props3 = [
 ]
 const Trade = () => {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [showAlert, setShowAlert] = useState(false)
   const [slippage, setSlippage] = useState(false)
   const [slippageValue, setSlippageValue] = useState(0)
   const { email, setEmail, loading, message, messageError, handleSubmit } = useEmailSubmit();
   const [showMore, setShowMore] = useState(false)
   const [showMorePrice, setShowMorePrice] = useState(false)
-  // 从 URL 中获取 step
   const searchParams = useSearchParams()
-  // const [step, setStep] = useState(Number(searchParams?.get('step')) || 0)
   const step = Number(searchParams?.get('step')) || 0
-  // const [width] = useWindowSize()
   const [isBuy, setIsBuy] = useState(true)
   const [amount, setAmount] = useState('')
   const [slideValue, setSlideValue] = useState(78)
   const [confirmBuy, setConfirmBuy] = useState(false)
   const [toSuccessPage, setToSuccessPage] = useState(false)
-  // const blockWidth = (width - 160 - 140 - (2 * 63)) / 64
   const svgRef = useRef<SVGSVGElement>(null)
   const svgRef2 = useRef<SVGSVGElement>(null)
   const router = useRouter()
@@ -656,7 +651,8 @@ const Trade = () => {
   // }, [])
   const handleNotify = () => {
     // setStep(1)
-    setShowAlert(true)
+    // setShowAlert(true)
+    router.push('/invitation')
   }
   // const handleBuy = () => {
   //   setStep(2)
@@ -1356,32 +1352,6 @@ const Trade = () => {
     <div className="trade-footer">
       {renderFooter()}
     </div>
-    {showAlert && <div className={`fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col items-center justify-center transition-all duration-300 ${showAlert ? 'bg-opacity-50' : 'bg-opacity-0'}`}>
-      <div
-        onClick={() => {
-          setShowAlert(false)
-        }}
-        className="flex items-center justify-center absolute top-0 left-0 w-full h-full"></div>
-      <div className="max-md:flex-1" />
-      <div className={`bg-white md:px-[32px] px-[20px] py-[0] md:py-[32px] md:w-[480px] w-full md:rounded-[16px] rounded-t-[16px] transition-all duration-300 ${showAlert ? 'scale-100' : 'scale-0'}`}>
-        <div className="md:hidden flex h-[36px] items-center justify-center" onClick={() => {
-          setShowAlert(false)
-        }}>
-          <div className="w-[32px] h-[4px] bg-black-0-1 rounded-full flex items-center justify-center"></div>
-        </div>
-        <div className="text-[#121212] text-left md:text-[32px] text-[24px] font-[600] poppins md:leading-[48px] leading-[36px]">Add Invitation Code</div>
-        <div className="text-black-0-5 text-[16px] md:mt-[24px] mt-[12px] mb-[24px] font-[400] poppins leading-[24px]">{`Initial Art Offering for this artwork is currently in its whitelist phase and is only accessible to invited participants. You'll need a valid invitation code to participate at this phase.`}</div>
-        <input type="text" className="border border-black-0-1 border-width-[1px] w-full px-[16px] py-[12px] rounded-[8px] text-[16px] font-[400] leading-[24px] text-[#121212] poppins" placeholder="Invitation Code" />
-        <div
-          onClick={() => {
-            setShowAlert(false)
-          }}
-          className="h-[48px] cursor-pointer rounded-[12px] bg-black text-white text-[18px] font-[500] poppins text-center mt-[40px] flex items-center justify-center hover:bg-[#474747]">
-          Submit
-        </div>
-        <div className="md:hidden h-[24px]"></div>
-      </div>
-    </div>}
     {confirmBuy && <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col items-center justify-center transition-all duration-300">
       <div
         onClick={() => {

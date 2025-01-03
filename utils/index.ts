@@ -29,3 +29,24 @@ export const isValidNumber = (value: string): boolean => {
 export const formatNumber = (value: number): string => {
   return value.toFixed(2)
 }
+
+export const formatAddress = (address: string): string => {
+  return address.slice(0, 4) + '...' + address.slice(-4)
+}
+
+export const copyString = (str: string | number): boolean => {
+  const input = document.createElement('input')
+  input.setAttribute('readonly', 'readonly')
+  input.setAttribute('type', 'text')
+  input.setAttribute('value', `${str}`)
+  document.body.appendChild(input)
+  input.setSelectionRange(0, 9999)
+  input.select()
+  if (document.execCommand('copy')) {
+    document.body.removeChild(input)
+    return true
+  }
+  document.body.removeChild(input)
+  return false
+
+}
