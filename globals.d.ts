@@ -10,6 +10,7 @@ declare global {
 declare global {
   interface Window {
     innerHeight: number;
+    Highcharts: typeof import('highcharts');
   }
 }
 

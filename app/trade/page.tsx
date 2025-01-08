@@ -7,6 +7,7 @@ import { formatNumber, isValidNumber } from "@/utils"
 import { AmountInput, ListButton, ProgressBar, SlideInput, SlippageInput } from "@/components/input"
 import * as d3 from "d3";
 import { useSearchParams, useRouter } from "next/navigation"
+import { Chart1, Chart2 } from "@/components/chart"
 
 const times = ['Days', 'Hours', 'Min', 'Seconds']
 const props = [
@@ -88,10 +89,8 @@ const Trade = () => {
   const svgRef = useRef<SVGSVGElement>(null)
   const svgRef2 = useRef<SVGSVGElement>(null)
   const router = useRouter()
-  // const svgRef3 = useRef<SVGSVGElement>(null)
-  // const svgBoxRef3 = useRef<HTMLDivElement>(null)
-  // const svgRef4 = useRef<SVGSVGElement>(null)
-  // const svgBoxRef4 = useRef<HTMLDivElement>(null)
+  const svgRef4 = useRef<SVGSVGElement>(null)
+  const svgBoxRef4 = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (svgRef.current && step === 2) {
       // 示例数据
@@ -333,322 +332,7 @@ const Trade = () => {
         .attr("d", (line as any));
     }
   }, [])
-  // useEffect(() => {
-  //   if (svgRef3.current) {
-  //     const data = [
-  //       { date: 1996, value: 1 },
-  //       { date: 1998, value: 1.2 },
-  //       { date: 2000, value: 1.5 },
-  //       { date: 2002, value: 1.8 },
-  //       { date: 2004, value: 2 },
-  //       { date: 2006, value: 2.5 },
-  //       { date: 2008, value: 3 },
-  //       { date: 2010, value: 3.5 },
-  //       { date: 2012, value: 4 },
-  //       { date: 2014, value: 3 },
-  //       { date: 2016, value: 3.5 },
-  //     ];
-
-  //     // 图表尺寸
-  //     const width = 800;
-  //     const height = 400;
-  //     const margin = { top: 0, right: 5, bottom: 30, left: 40 };
-  //     // 创建比例尺
-  //     const xScale = d3
-  //       .scaleLinear()
-  //       .domain((d3 as any).extent(data, (d: any) => {
-  //         return d.date
-  //       }))
-  //       .range([margin.left, width - margin.right]);
-
-  //     const yScale = d3
-  //       .scaleLinear()
-  //       .domain([1, (d3 as any).max(data, (d: any) => d.value) * 1.2]) // 放大最大值以留白
-  //       .range([height - margin.bottom, margin.top]);
-
-  //     // 创建 SVG 容器
-  //     const svg = d3
-  //       .select(svgRef3.current)
-  //       .attr('viewBox', `0 0 ${width} ${height}`) // 设置视窗大小
-  //       .attr('preserveAspectRatio', 'xMidYMid meet') // 保持纵横比
-  //       .classed('responsive', true); // 添加类以便后续使用 CSS
-
-  //     // svg.attr("width", width)
-  //     // svg.attr("height", height);
-
-  //     // 清空 SVG（防止多次渲染重复）
-  //     svg.selectAll("*").remove();
-  //     // 绘制 x 轴
-  //     svg
-  //       .append("g")
-  //       .attr("transform", `translate(0, ${height - margin.bottom})`)
-  //       .call(
-  //         (d3 as any).axisBottom(xScale)
-  //           .ticks(data.length)
-  //           .tickFormat((d: any) => {
-  //             return d
-  //           })
-  //       )
-  //       // .selectAll("text")
-  //       // .style("font-size", "12px")
-  //       // .style("color", "rgba(0, 0, 0, 0.4)")
-  //       .call((g) => {
-  //         g.select(".domain").attr("stroke", "rgba(0, 0, 0, 0.4)")
-  //         g.selectAll(".tick line") // 修改刻度线样式
-  //           // 虚线
-  //           .attr("stroke-dasharray", "5,5")
-  //           .attr("stroke", "rgba(0, 0, 0, 0.2)")
-  //           .attr("stroke-width", 0.5)
-
-  //         g.selectAll(".tick text") // 调整刻度文字的位置
-  //           // .attr("dx", "-0px") // 将文字向左移动 10px
-  //           .attr("fill", "black") // 设置文字颜色
-  //           .attr("font-size", "14px");
-
-  //         // 最后一个刻度左移 10px
-  //         g.selectAll(".tick:last-of-type text")
-  //           .attr("dx", "-10px")
-  //       })
-  //       .attr("font-size", "14px")
-
-  //     // 绘制 y 轴
-  //     svg
-  //       .append("g")
-  //       .call(
-  //         (d3 as any).axisLeft(yScale)
-  //           .ticks(5) // 设置刻度数量
-  //           .tickSize(-width) // 设置刻度线长度为图表宽度的负值，横穿整个象限
-  //           .tickFormat((d: any) => d) // 可选：保留默认刻度文字
-  //           .tickFormat((d: any) => {
-  //             // 0 不展示
-  //             if (d === 0) return ''
-  //             return "$" + d + 'M'
-  //           })
-  //       )
-  //       .attr("transform", `translate(${margin.left}, 0)`)
-  //       .call((g) => {
-  //         g.select(".domain").remove()
-
-  //         g.selectAll(".tick line") // 修改刻度线样式
-  //           .attr("stroke", "rgba(0, 0, 0, 0.2)")
-  //           .attr("stroke-width", 0.5)
-  //           // 虚线
-  //           .attr("stroke-dasharray", "5,5")
-
-  //         g.selectAll(".tick text") // 调整刻度文字的位置
-  //           .attr("dx", "-10px") // 将文字向左移动 10px
-  //           .attr("fill", "black") // 设置文字颜色
-  //           .attr("font-size", "14px");
-  //       }) // 移除轴线
-  //       .attr("font-size", "14px")
-
-  //     // 修改 Y 轴刻度文字的颜色
-  //     svg
-  //       .selectAll(".tick text") // 选择 Y 轴的刻度文字
-  //       .attr("fill", "rgba(0, 0, 0, 0.4)"); // 设置字体颜色
-
-  //     // 绘制填充区域
-  //     // const area = d3
-  //     //   .area()
-  //     //   .x((d: any) => xScale(d.date))
-  //     //   .y0(height - margin.bottom) // 起始 y 值（底部）
-  //     //   .y1((d: any) => yScale(d.value)) // 终止 y 值（数据点的 y 值）
-  //     //   .curve(d3.curveLinear); // 曲线类型（可改为 d3.curveMonotoneX）
-  //     // 绘制填充区域
-  //     const gradient = svg.append("defs")
-  //       .append("linearGradient")
-  //       .attr("id", "greenGradient")
-  //       .attr("x1", "0.5")
-  //       .attr("y1", "0")
-  //       .attr("x2", "0.5")
-  //       .attr("y2", "1");
-
-  //     gradient.append("stop")
-  //       .attr("offset", "0%")
-  //       .attr("stop-color", "rgba(18, 183, 106, 0.01)");
-
-  //     gradient.append("stop")
-  //       .attr("offset", "100%")
-  //       .attr("stop-color", "rgba(255, 255, 255, 0.9)");
-  //     svg
-  //       .append("path")
-  //       .datum(data)
-  //     // .attr("fill", "url(#greenGradient)") // 填充颜色
-  //     // .attr("d", (area as any));
-
-  //     // 绘制折线
-  //     const line = d3
-  //       .line()
-  //       .x((d: any) => xScale(d.date))
-  //       .y((d: any) => yScale(d.value))
-  //       .curve(d3.curveLinear); // 曲线类型
-
-  //     svg
-  //       .append("path")
-  //       .datum(data)
-  //       .attr("fill", "none")
-  //       .attr("stroke", "#4CAF50") // 折线颜色
-  //       .attr("stroke-width", 2)
-  //       .attr("d", (line as any));
-
-  //   }
-  //   if (svgRef4.current) {
-  //     const data = [
-  //       { date: 1996, value: 3 },
-  //       { date: 1998, value: 2.2 },
-  //       { date: 2000, value: 2.5 },
-  //       { date: 2002, value: 2.8 },
-  //       { date: 2004, value: 3 },
-  //       { date: 2006, value: 3.5 },
-  //       { date: 2008, value: 4 },
-  //       { date: 2010, value: 4.5 },
-  //       { date: 2012, value: 4 },
-  //       { date: 2014, value: 3 },
-  //       { date: 2016, value: 3.5 },
-  //     ];
-
-  //     // 图表尺寸
-  //     const width = 800;
-  //     const height = 400;
-  //     const margin = { top: 0, right: 5, bottom: 30, left: 40 };
-  //     // 创建比例尺
-  //     const xScale = d3
-  //       .scaleLinear()
-  //       .domain((d3 as any).extent(data, (d: any) => {
-  //         return d.date
-  //       }))
-  //       .range([margin.left, width - margin.right]);
-
-  //     const yScale = d3
-  //       .scaleLinear()
-  //       .domain([1, (d3 as any).max(data, (d: any) => d.value) * 1.5]) // 放大最大值以留白
-  //       .range([height - margin.bottom, margin.top]);
-
-  //     // 创建 SVG 容器
-  //     const svg = d3
-  //       .select(svgRef4.current)
-  //       .attr('viewBox', `0 0 ${width} ${height}`) // 设置视窗大小
-  //       .attr('preserveAspectRatio', 'xMidYMid meet') // 保持纵横比
-  //       .classed('responsive', true); // 添加类以便后续使用 CSS
-
-  //     // svg.attr("width", width)
-  //     // svg.attr("height", height);
-
-  //     // 清空 SVG（防止多次渲染重复）
-  //     svg.selectAll("*").remove();
-  //     // 绘制 x 轴
-  //     svg
-  //       .append("g")
-  //       .attr("transform", `translate(0, ${height - margin.bottom})`)
-  //       .call(
-  //         (d3 as any).axisBottom(xScale)
-  //           .ticks(data.length)
-  //           .tickFormat((d: any) => {
-  //             return d
-  //           })
-  //       )
-  //       // .selectAll("text")
-  //       // .style("font-size", "12px")
-  //       // .style("color", "rgba(0, 0, 0, 0.4)")
-  //       .call((g) => {
-  //         g.select(".domain").attr("stroke", "rgba(0, 0, 0, 0.4)")
-  //         g.selectAll(".tick line") // 修改刻度线样式
-  //           .attr("stroke", "rgba(0, 0, 0, 0.2)")
-  //           .attr("stroke-width", 1)
-
-  //         g.selectAll(".tick text") // 调整刻度文字的位置
-  //           // .attr("dx", "-0px") // 将文字向左移动 10px
-  //           .attr("fill", "black") // 设置文字颜色
-  //           .attr("font-size", "14px");
-
-  //         // 最后一个刻度左移 10px
-  //         g.selectAll(".tick:last-of-type text")
-  //           .attr("dx", "-10px")
-  //       })
-  //       .attr("font-size", "14px")
-
-  //     // 绘制 y 轴
-  //     svg
-  //       .append("g")
-  //       .call(
-  //         (d3 as any).axisLeft(yScale)
-  //           .ticks(5) // 设置刻度数量
-  //           .tickSize(-width) // 设置刻度线长度为图表宽度的负值，横穿整个象限
-  //           .tickFormat((d: any) => d) // 可选：保留默认刻度文字
-  //           .tickFormat((d: any) => {
-  //             // 0 不展示
-  //             if (d === 0) return ''
-  //             return "$" + d + 'M'
-  //           })
-  //       )
-  //       .attr("transform", `translate(${margin.left}, 0)`)
-  //       .call((g) => {
-  //         g.select(".domain").remove()
-
-  //         g.selectAll(".tick line") // 修改刻度线样式
-  //           .attr("stroke", "rgba(0, 0, 0, 0.2)")
-  //           .attr("stroke-width", 0.5)
-  //           // 虚线
-  //           .attr("stroke-dasharray", "5,5")
-
-  //         g.selectAll(".tick text") // 调整刻度文字的位置
-  //           .attr("dx", "-10px") // 将文字向左移动 10px
-  //           .attr("fill", "black") // 设置文字颜色
-  //           .attr("font-size", "14px");
-  //       }) // 移除轴线
-  //       .attr("font-size", "14px")
-
-  //     // 修改 Y 轴刻度文字的颜色
-  //     svg
-  //       .selectAll(".tick text") // 选择 Y 轴的刻度文字
-  //       .attr("fill", "rgba(0, 0, 0, 0.4)"); // 设置字体颜色
-
-  //     // 绘制填充区域
-  //     // const area = d3
-  //     //   .area()
-  //     //   .x((d: any) => xScale(d.date))
-  //     //   .y0(height - margin.bottom) // 起始 y 值（底部）
-  //     //   .y1((d: any) => yScale(d.value)) // 终止 y 值（数据点的 y 值）
-  //     //   .curve(d3.curveLinear); // 曲线类型（可改为 d3.curveMonotoneX）
-  //     // 绘制填充区域
-  //     const gradient = svg.append("defs")
-  //       .append("linearGradient")
-  //       .attr("id", "greenGradient")
-  //       .attr("x1", "0.5")
-  //       .attr("y1", "0")
-  //       .attr("x2", "0.5")
-  //       .attr("y2", "1");
-
-  //     gradient.append("stop")
-  //       .attr("offset", "0%")
-  //       .attr("stop-color", "rgba(18, 183, 106, 0.01)");
-
-  //     gradient.append("stop")
-  //       .attr("offset", "100%")
-  //       .attr("stop-color", "rgba(255, 255, 255, 0.9)");
-  //     svg
-  //       .append("path")
-  //       .datum(data)
-  //     // .attr("fill", "url(#greenGradient)") // 填充颜色
-  //     // .attr("d", (area as any));
-
-  //     // 绘制折线
-  //     const line = d3
-  //       .line()
-  //       .x((d: any) => xScale(d.date))
-  //       .y((d: any) => yScale(d.value))
-  //       .curve(d3.curveLinear); // 曲线类型
-
-  //     svg
-  //       .append("path")
-  //       .datum(data)
-  //       .attr("fill", "none")
-  //       .attr("stroke", "#4CAF50") // 折线颜色
-  //       .attr("stroke-width", 2)
-  //       .attr("d", (line as any));
-
-  //   }
-  // }, [])
+  
   const handleNotify = () => {
     // setStep(1)
     // setShowAlert(true)
@@ -1129,24 +813,20 @@ const Trade = () => {
           </div>
         </div>
         <div className="w-full flex flex-col md:flex-row xl:gap-[120px] md:gap-[60px] gap-[30px]">
-          <div className="flex-1">
+          {/* <div className="flex-1">
             <img src="/trade/l1.png" alt="l1" className="w-full h-full object-cover" />
           </div>
           <div className="flex-1">
             <img src="/trade/l2.png" alt="l2" className="w-full h-full object-cover" />
-          </div>
-          {/* <div className="flex-1 h-full">
+          </div> */}
+          <div className="flex-1 h-full">
             <div className="md:text-[20px] text-[12px] font-[500] md:leading-[32px] leading-[18px] text-black-0-9 VictorSherif">Price vs Date Scatter Plot</div>
-            <div className="w-full md:mt-[16px] mt-[8px]" ref={svgBoxRef3}>
-              <svg ref={svgRef3}></svg>
-            </div>
+            <Chart1 />
           </div>
           <div className="flex-1 h-full mt-[30px] md:mt-0">
             <div className="md:text-[20px] text-[12px] font-[500] md:leading-[32px] leading-[18px] text-black-0-9 VictorSherif">Record High Prices Over Time</div>
-            <div className="w-full md:mt-[16px] mt-[8px]" ref={svgBoxRef4}>
-              <svg ref={svgRef4}></svg>
-            </div>
-          </div> */}
+            <Chart2 />
+          </div>
         </div>
         <div className="h-[1px] bg-black-0-1 w-full md:my-[120px] my-[60px]"></div>
         <div className="flex flex-col md:flex-row md:items-center md:mb-[60px] mb-[30px]">

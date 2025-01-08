@@ -50,3 +50,10 @@ export const copyString = (str: string | number): boolean => {
   return false
 
 }
+
+export const formatDate = (date: Date): string => {
+  // 1994-05-12
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return date.getFullYear() + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day)
+}
