@@ -89,8 +89,6 @@ const Trade = () => {
   const svgRef = useRef<SVGSVGElement>(null)
   const svgRef2 = useRef<SVGSVGElement>(null)
   const router = useRouter()
-  const svgRef4 = useRef<SVGSVGElement>(null)
-  const svgBoxRef4 = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (svgRef.current && step === 2) {
       // 示例数据
@@ -334,13 +332,8 @@ const Trade = () => {
   }, [])
   
   const handleNotify = () => {
-    // setStep(1)
-    // setShowAlert(true)
     router.push('/invitation')
   }
-  // const handleBuy = () => {
-  //   setStep(2)
-  // }
   const handleBuyOrSell = () => {
     setConfirmBuy(true)
   }
