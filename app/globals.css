@@ -661,3 +661,40 @@ svg.responsive {
 .footer-fixed-24 {
   height: calc(24px + env(safe-area-inset-bottom));
 }
+
+/* 向上移动 40px */
+.up-40-animationPre {
+  transform: translateY(40px);
+  opacity: 0;
+}
+.up-40-animation {  
+  animation: up-40-animation 0.8s ease-in-out forwards;
+}
+.swip-right-40-animationPre {
+  transform: translateX(40px);
+  opacity: 0;
+}
+.swip-left-40-animation {
+  animation: swip-left-40-animation 0.8s ease-in-out forwards;
+}
+
+@keyframes swip-left-40-animation {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes up-40-animation {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}

@@ -88,6 +88,26 @@ const Trade = () => {
   const [toSuccessPage, setToSuccessPage] = useState(false)
   const svgRef = useRef<SVGSVGElement>(null)
   const svgRef2 = useRef<SVGSVGElement>(null)
+
+  // const tradePage2Ref = useRef<HTMLDivElement>(null)
+  const tradePage2TitleRef = useRef<HTMLDivElement>(null)
+  const tradePage2ConentRef = useRef<HTMLDivElement>(null)
+
+  // const tradePage3Ref = useRef<HTMLDivElement>(null)
+  const tradePage3TitleRef = useRef<HTMLDivElement>(null)
+  const tradePage3ConentRef = useRef<HTMLDivElement>(null)
+
+  const tradePage4TitleRef = useRef<HTMLDivElement>(null)
+  const tradePage4ConentRef = useRef<HTMLDivElement>(null)
+
+  const tradePage5TitleRef = useRef<HTMLDivElement>(null)
+  const tradePage5ConentRef = useRef<HTMLDivElement>(null)
+  const tradePage5TitleRef2 = useRef<HTMLDivElement>(null)
+  const tradePage5ConentRef2 = useRef<HTMLDivElement>(null)
+
+  const tradePage6TitleRef = useRef<HTMLDivElement>(null)
+  const tradePage6ConentRef = useRef<HTMLDivElement>(null)
+
   const router = useRouter()
   useEffect(() => {
     if (svgRef.current && step === 2) {
@@ -330,7 +350,63 @@ const Trade = () => {
         .attr("d", (line as any));
     }
   }, [])
-  
+  useEffect(() => {
+    const tradePage2Top = tradePage2TitleRef.current?.getBoundingClientRect().top || 0
+    const tradePage3Top = tradePage3TitleRef.current?.getBoundingClientRect().top || 0
+    const tradePage4Top = tradePage4TitleRef.current?.getBoundingClientRect().top || 0
+    const tradePage5Top = tradePage5TitleRef.current?.getBoundingClientRect().top || 0
+    const tradePage5Top2 = tradePage5TitleRef2.current?.getBoundingClientRect().top || 0
+    const tradePage6Top = tradePage6TitleRef.current?.getBoundingClientRect().top || 0
+    // 监听滚动
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY
+      // console.log(scrollTop)
+      //scrollTop 去到 trade_page_2 的 top 位置
+      if (scrollTop > (tradePage2Top - 200)) {
+        tradePage2TitleRef.current?.classList.add('up-40-animation')
+        tradePage2ConentRef.current?.classList.add('swip-left-40-animation')
+      } else {
+        tradePage2TitleRef.current?.classList.remove('up-40-animation')
+        tradePage2ConentRef.current?.classList.remove('swip-left-40-animation')
+      }
+      if (scrollTop > (tradePage3Top - 200)) {
+        tradePage3TitleRef.current?.classList.add('up-40-animation')
+        tradePage3ConentRef.current?.classList.add('swip-left-40-animation')
+      } else {
+        tradePage3TitleRef.current?.classList.remove('up-40-animation')
+        tradePage3ConentRef.current?.classList.remove('swip-left-40-animation')
+      }
+      if (scrollTop > (tradePage4Top - 200)) {
+        tradePage4TitleRef.current?.classList.add('up-40-animation')
+        tradePage4ConentRef.current?.classList.add('swip-left-40-animation')
+      } else {
+        tradePage4TitleRef.current?.classList.remove('up-40-animation')
+        tradePage4ConentRef.current?.classList.remove('swip-left-40-animation')
+      }
+      if (scrollTop > (tradePage5Top - 200)) {
+        tradePage5TitleRef.current?.classList.add('up-40-animation')
+        tradePage5ConentRef.current?.classList.add('swip-left-40-animation')
+      } else {
+        tradePage5TitleRef.current?.classList.remove('up-40-animation')
+        tradePage5ConentRef.current?.classList.remove('swip-left-40-animation')
+      }
+      if (scrollTop > (tradePage5Top2 - 200)) {
+        tradePage5TitleRef2.current?.classList.add('up-40-animation')
+        tradePage5ConentRef2.current?.classList.add('swip-left-40-animation')
+      } else {
+        tradePage5TitleRef2.current?.classList.remove('up-40-animation')
+        tradePage5ConentRef2.current?.classList.remove('swip-left-40-animation')
+      }
+      if (scrollTop > (tradePage6Top - 200)) {
+        tradePage6TitleRef.current?.classList.add('up-40-animation')
+        tradePage6ConentRef.current?.classList.add('swip-left-40-animation')
+      } else {
+        tradePage6TitleRef.current?.classList.remove('up-40-animation')
+        tradePage6ConentRef.current?.classList.remove('swip-left-40-animation')
+      }
+    })
+  }, [])
+
   const handleNotify = () => {
     router.push('/invitation')
   }
@@ -698,10 +774,10 @@ const Trade = () => {
           </div>
         </div>
       </div>
-      <div className='trade_page_2'>
+      <div className='trade_page_2' id="trade_page_2">
         <img src="/trade/2.png" alt="trade_page_image" className="w-full" />
-        <div className="md:text-[60px] text-[30px] font-[400] md:mt-[120px] mt-[60px] md:mb-[60px] mb-[30px] md:leading-[80px] leading-[40px] text-black-0-9 VictorSherif">How it <span className="font-[500] VictorSherif italic">works？</span></div>
-        <div className="grid md:grid-cols-3 grid-cols-1 gap-[40px]">
+        <div ref={tradePage2TitleRef} className="md:text-[60px] text-[30px] font-[400] md:mt-[120px] mt-[60px] md:mb-[60px] mb-[30px] md:leading-[80px] leading-[40px] text-black-0-9 VictorSherif up-40-animationPre">How it <span className="font-[500] VictorSherif italic">works？</span></div>
+        <div ref={tradePage2ConentRef} className="grid md:grid-cols-3 grid-cols-1 gap-[40px] swip-right-40-animationPre">
           <div className="md:block hidden"></div>
           {
             [
@@ -782,10 +858,9 @@ const Trade = () => {
           }
         </div>
         <div className="h-[1px] bg-black-0-1 w-full md:my-[120px] my-[60px]"></div>
-        <div className="flex flex-col md:flex-row md:items-center md:mb-[60px] mb-[30px]">
+        <div ref={tradePage3TitleRef} className="flex flex-col md:flex-row md:items-center md:mb-[60px] mb-[30px] up-40-animationPre">
           <div>
             <div className="md:text-[60px] text-[30px] font-[400] md:leading-[80px] leading-[40px] text-black-0-9 VictorSherif">Valuation <span className="VictorSherif font-[500] italic">analytics</span></div>
-            {/* <div className="md:text-[16px] text-[12px] font-[400] md:leading-[25.6px] leading-[19.2px] text-black-0-6 VictorSherif">Nature Morte avec des Fruits</div> */}
           </div>
           <div className="flex-1 flex md:justify-end md:items-end mt-[30px] md:mt-0 gap-[40px]">
             <div className="md:min-w-[260px] max-md:flex-1">
@@ -805,13 +880,7 @@ const Trade = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-col md:flex-row xl:gap-[120px] md:gap-[60px] gap-[30px]">
-          {/* <div className="flex-1">
-            <img src="/trade/l1.png" alt="l1" className="w-full h-full object-cover" />
-          </div>
-          <div className="flex-1">
-            <img src="/trade/l2.png" alt="l2" className="w-full h-full object-cover" />
-          </div> */}
+        <div ref={tradePage3ConentRef} className="w-full flex flex-col md:flex-row xl:gap-[120px] md:gap-[60px] gap-[30px] swip-right-40-animationPre">
           <div className="flex-1 h-full">
             <div className="md:text-[20px] text-[12px] font-[500] md:leading-[32px] leading-[18px] text-black-0-9 VictorSherif">Price vs Date Scatter Plot</div>
             <Chart1 />
@@ -822,10 +891,9 @@ const Trade = () => {
           </div>
         </div>
         <div className="h-[1px] bg-black-0-1 w-full md:my-[120px] my-[60px]"></div>
-        <div className="flex flex-col md:flex-row md:items-center md:mb-[60px] mb-[30px]">
+        <div ref={tradePage4TitleRef} className="flex flex-col md:flex-row md:items-center md:mb-[60px] mb-[30px] up-40-animationPre">
           <div>
             <div className="md:text-[60px] text-[30px] font-[400] md:leading-[80px] leading-[40px] text-black-0-9 VictorSherif">Similar <span className="VictorSherif font-[500] italic">artworks</span></div>
-            {/* <div className="md:text-[16px] text-[12px] font-[400] md:leading-[25.6px] leading-[19.2px] text-black-0-6 VictorSherif">Henri Matisse</div> */}
           </div>
           <div className="flex-1 flex md:justify-end md:items-end max-md:grid max-md:grid-cols-2 max-md:gap-x-[20px] max-md:gap-y-[10px] max-md:mt-[10px]">
             {
@@ -843,7 +911,7 @@ const Trade = () => {
             }
           </div>
         </div>
-        <div className="grid md:grid-cols-3 grid-cols-1 gap-[20px]">
+        <div ref={tradePage4ConentRef} className="grid md:grid-cols-3 grid-cols-1 gap-[20px] swip-right-40-animationPre">
           {
             [
               {
@@ -887,7 +955,7 @@ const Trade = () => {
         <div className="h-[1px] bg-black-0-1 w-full md:my-[120px] my-[60px]"></div>
         {/* about Henri Matisse PC */}
         <div className="md:flex hidden">
-          <div className="flex-1 mr-[80px]">
+          <div ref={tradePage5TitleRef} className="flex-1 mr-[80px] up-40-animationPre">
             <div className="text-[60px] font-[400] leading-[80px] text-black-0-9 VictorSherif">About <span className="font-[500] VictorSherif italic">Henri Matisse</span></div>
             <div className="mt-[104px]">
               <div className="w-[409px] h-[222px] bg-[#D9D9D9]">
@@ -897,7 +965,7 @@ const Trade = () => {
               <div className="text-[20px] ml-[100px] mt-[122px] font-[400] leading-[32px] text-black/50 poppins">Matisse was no timid artist. He was a bold, brazen revolutionary who dared to defy the rules of art. With his Fauvist comrades, he unleashed a riot of color onto the canvas, shocking the art world with his audacious brushstrokes and disregard for traditional representation. But Matisse was no one-trick pony. He was a shape-shifter, constantly exploring new avenues of artistic expression. From the vibrant intensity of his early works to the serene, almost ethereal beauty of his later cut-outs, Matisse was a master of reinvention. </div>
             </div>
           </div>
-          <div className="w-[560px] pt-[25px]">
+          <div ref={tradePage5ConentRef} className="w-[560px] pt-[25px] swip-right-40-animationPre">
             <div className="text-[48px] font-[400] leading-[60px] text-black-0-9 poppins">Since</div>
             <div className="text-[48px] font-[400] leading-[60px] text-black-0-9 poppins">1869-1954</div>
             <div className="text-[20px] mt-[80px] font-[400] leading-[32px] text-black/50 poppins">Born into a world of law and order, Henri Matisse was destined for a life of contracts and courtrooms. But fate, in the form of a nasty bout of appendicitis, had other plans. Bedridden and bored, he picked up a paintbrush, and in that moment, a legal career was unceremoniously dumped for a life of color and chaos.</div>
@@ -908,17 +976,20 @@ const Trade = () => {
         </div>
         {/* about Henri Matisse mobile */}
         <div className="md:hidden">
-          <div className="text-[30px] font-[400] leading-[40px] text-black-0-9 VictorSherif">About <span className="font-[500] VictorSherif italic">Henri Matisse</span></div>
-          <img src="/trade/trade_1.jpg" alt="Henri Matisse" className="w-full h-full object-cover mt-[30px]" />
-          <div className="text-[14px] mt-[20px] font-[400] leading-[16.8px] text-black-0-9 poppins">Since</div>
-          <div className="text-[14px] mt-[8px] font-[400] leading-[16.8px] text-black-0-9 poppins">1869-1954</div>
-          <div className="text-[12px] mt-[20px] font-[400] leading-[19.2px] text-black/50 poppins">Born into a world of law and order, Henri Matisse was destined for a life of contracts and courtrooms. But fate, in the form of a nasty bout of appendicitis, had other plans. Bedridden and bored, he picked up a paintbrush, and in that moment, a legal career was unceremoniously dumped for a life of color and chaos.</div>
-          <div className="text-[14px] mt-[20px] font-[500] leading-[16.8px] text-black-0-9 poppins">The Lower East Side Gets a New Gallery.</div>
-          <div className="text-[12px] mt-[20px] font-[400] leading-[19.2px] text-black/50 poppins">Matisse was no timid artist. He was a bold, brazen revolutionary who dared to defy the rules of art. With his Fauvist comrades, he unleashed a riot of color onto the canvas, shocking the art world with his audacious brushstrokes and disregard for traditional representation. But Matisse was no one-trick pony. He was a shape-shifter, constantly exploring new avenues of artistic expression. From the vibrant intensity of his early works to the serene, almost ethereal beauty of his later cut-outs, Matisse was a master of reinvention. </div>
-          <img src="/trade/trade_2.jpg" alt="Henri Matisse" className="w-full h-full mt-[20px] object-cover" />
+          <div ref={tradePage5TitleRef2} className="text-[30px] font-[400] leading-[40px] text-black-0-9 VictorSherif up-40-animationPre">About <span className="font-[500] VictorSherif italic">Henri Matisse</span></div>
+          <div ref={tradePage5ConentRef2} className="swip-right-40-animationPre">
+            <img src="/trade/trade_1.jpg" alt="Henri Matisse" className="w-full h-full object-cover mt-[30px]" />
+            <div className="text-[14px] mt-[20px] font-[400] leading-[16.8px] text-black-0-9 poppins">Since</div>
+            <div className="text-[14px] mt-[8px] font-[400] leading-[16.8px] text-black-0-9 poppins">1869-1954</div>
+            <div className="text-[12px] mt-[20px] font-[400] leading-[19.2px] text-black/50 poppins">Born into a world of law and order, Henri Matisse was destined for a life of contracts and courtrooms. But fate, in the form of a nasty bout of appendicitis, had other plans. Bedridden and bored, he picked up a paintbrush, and in that moment, a legal career was unceremoniously dumped for a life of color and chaos.</div>
+            <div className="text-[14px] mt-[20px] font-[500] leading-[16.8px] text-black-0-9 poppins">The Lower East Side Gets a New Gallery.</div>
+            <div className="text-[12px] mt-[20px] font-[400] leading-[19.2px] text-black/50 poppins">Matisse was no timid artist. He was a bold, brazen revolutionary who dared to defy the rules of art. With his Fauvist comrades, he unleashed a riot of color onto the canvas, shocking the art world with his audacious brushstrokes and disregard for traditional representation. But Matisse was no one-trick pony. He was a shape-shifter, constantly exploring new avenues of artistic expression. From the vibrant intensity of his early works to the serene, almost ethereal beauty of his later cut-outs, Matisse was a master of reinvention. </div>
+            <img src="/trade/trade_2.jpg" alt="Henri Matisse" className="w-full h-full mt-[20px] object-cover" />
+          </div>
+          
         </div>
         <div className="h-[1px] bg-black-0-1 w-full md:my-[120px] my-[60px]"></div>
-        <div className="flex md:mb-[60px] mb-[30px] items-center">
+        <div ref={tradePage6TitleRef} className="flex md:mb-[60px] mb-[30px] items-center up-40-animationPre">
           <div className="md:text-[60px] text-[30px] font-[400] md:leading-[80px] leading-[36px] text-black-0-9 VictorSherif">Relevant <span className="font-[500] VictorSherif italic">News</span></div>
           <div className="flex-1"></div>
           <div className="max-md:hidden w-[48px] h-[48px] flex items-center justify-center bg-black-0-05 rounded-full hover:bg-[#ccc] cursor-pointer mr-[32px]">
@@ -934,7 +1005,7 @@ const Trade = () => {
             </svg>
           </div>
         </div>
-        <div className="md:gap-[80px] gap-[40px] grid md:grid-cols-2 grid-cols-1">
+        <div ref={tradePage6ConentRef} className="md:gap-[80px] gap-[40px] grid md:grid-cols-2 grid-cols-1 swip-right-40-animationPre">
           {
             [
               {
