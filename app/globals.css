@@ -268,14 +268,13 @@ input:-webkit-autofill:focus {
   user-select: auto;
 }
 
-/* .mainPage2{
+.mainPage2{
   overflow-x: hidden;
-} */
-
+}
 .mainPage2 * {
   /* user-select: none; */
   font-family: "Lato";
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .login_input {
