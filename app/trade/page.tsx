@@ -357,12 +357,13 @@ const Trade = () => {
     const tradePage5Top = tradePage5TitleRef.current?.getBoundingClientRect().top || 0
     const tradePage5Top2 = tradePage5TitleRef2.current?.getBoundingClientRect().top || 0
     const tradePage6Top = tradePage6TitleRef.current?.getBoundingClientRect().top || 0
+    const windowHeight = window.innerHeight
     // 监听滚动
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY
       // console.log(scrollTop)
       //scrollTop 去到 trade_page_2 的 top 位置
-      if (scrollTop > (tradePage2Top - 200)) {
+      if (scrollTop > (tradePage2Top - windowHeight / 2)) {
         tradePage2TitleRef.current?.classList.add('up-40-animation')
         tradePage2ConentRef.current?.classList.add('swip-left-40-animation')
       } else {
@@ -986,7 +987,7 @@ const Trade = () => {
             <div className="text-[12px] mt-[20px] font-[400] leading-[19.2px] text-black/50 poppins">Matisse was no timid artist. He was a bold, brazen revolutionary who dared to defy the rules of art. With his Fauvist comrades, he unleashed a riot of color onto the canvas, shocking the art world with his audacious brushstrokes and disregard for traditional representation. But Matisse was no one-trick pony. He was a shape-shifter, constantly exploring new avenues of artistic expression. From the vibrant intensity of his early works to the serene, almost ethereal beauty of his later cut-outs, Matisse was a master of reinvention. </div>
             <img src="/trade/trade_2.jpg" alt="Henri Matisse" className="w-full h-full mt-[20px] object-cover" />
           </div>
-          
+
         </div>
         <div className="h-[1px] bg-black-0-1 w-full md:my-[120px] my-[60px]"></div>
         <div ref={tradePage6TitleRef} className="flex md:mb-[60px] mb-[30px] items-center up-40-animationPre">
